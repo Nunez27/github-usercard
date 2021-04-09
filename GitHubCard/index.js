@@ -72,6 +72,7 @@ const dom = (object) => {
   const parentDiv = document.createElement('div')
   parentDiv.classList.add('card')
   const img = document.createElement('img')
+  img.src = object
   const div = document.createElement('div')
   div.classList.add('card-info')
   const h3 = document.createElement('h3')
