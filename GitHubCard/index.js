@@ -47,7 +47,26 @@ axios
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+    'tetondan',
+    'dustinmyers',
+    'justsml',
+    'luishrd',
+    'bigknell'
+];
+
+const cardMaker = document.querySelector('.cards')
+
+followersArray.forEach(item => {
+  axios
+  .get(`https://api.github.com/users/${item}`)
+  .then(res => {
+    cardMaker(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
