@@ -3,7 +3,26 @@
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
+import axios from 'axios'
 
+// const result = axios.get('https://api.github.com/users/Nunez27')
+// console.log(result);
+
+axios
+.get("https://api.github.com/users/Nunez27")
+.then((me) => {
+  console.log(me, me.data);
+  const gitMe = me.data;
+  const meArr = Array.from(gitMe);
+  meArr.forEach((info) => {
+    const Brian = myProfile(info);
+    console.log(Brian);
+    entry.appendChild(gitMe);
+  })
+  .catch(error => {
+    console.log(error)
+  })
+});
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -28,7 +47,26 @@
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+    'tetondan',
+    'dustinmyers',
+    'justsml',
+    'luishrd',
+    'bigknell'
+];
+
+const cardMaker = document.querySelector('.cards')
+
+followersArray.forEach(item => {
+  axios
+  .get(`https://api.github.com/users/${item}`)
+  .then(res => {
+    cardMaker(res.data)
+  })
+  .catch(err => {
+    console.log(err)
+  })
+})
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -49,7 +87,24 @@ const followersArray = [];
       </div>
     </div>
 */
-
+const dom = (object) => {
+  const parentDiv = document.createElement('div')
+  parentDiv.classList.add('card')
+  const img = document.createElement('img')
+  img.src = object
+  const div = document.createElement('div')
+  div.classList.add('card-info')
+  const h3 = document.createElement('h3')
+  h3.classList.add('name')
+  const pUsername = document.createElement('p')
+  p1.classList.add('username')
+  const pLocation = document.createElement('p')
+  const pProfile = document.createElement('p')
+  const a = document.createElement('a')
+  const pFollowers = document.createElement('p')
+  const pFollowing = document.createElement('p')
+  const pBio = document.createElement('p')
+}
 /*
   List of LS Instructors Github username's:
     tetondan
